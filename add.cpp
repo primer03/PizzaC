@@ -234,7 +234,7 @@ int searchData()
     bool checkid = false;
     do
     {
-        cout << "Enter student id want to search : ";
+        cout << "Enter Pizza id want to search : ";
         cin >> id;
         Product pd;
         ifstream read;
