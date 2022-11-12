@@ -1895,13 +1895,15 @@ void Complet(){
         cout << "7.SearchOrderReport" << endl;
         cout << "8.Exit" << endl;
         int option;
+        char choption;
         cout << "Enter option : ";
-        cin >> option;
+        cin >> choption;
+        option = int(choption) - 48;
         if (option == 1)
         {
             system("CLS");
             Pizza();
-            // system("CLS");
+            system("CLS");
         }else if (option == 2){
             Addproduct();
             system("CLS");
