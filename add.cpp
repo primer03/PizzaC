@@ -8,7 +8,7 @@
 #include <direct.h>
 using namespace std;
 
-// sdfsdzxczxczxczxcf
+
 int ID,Cnum = 0,OrderID,SSumtotal = 0;
 bool cjp = false;
 string Pid[100] = {};
