@@ -9,6 +9,7 @@
 using namespace std;
 
 int ID,Cnum = 0,OrderID,SSumtotal = 0;
+bool cjp = false;
 string Pid[100] = {};
 string Pname[100] = {};
 string PthickS[100] = {};
@@ -224,6 +225,8 @@ void Productlist()
          << " : " << setw(7) <<  PpriceS[x] << " :" << setw(8) << PpriceM[x] << " :" << setw(8) << PpriceL[x] << " :" << endl;
         x++;
     }
+    cout << "+==================================================================================================================+" << endl;
+    cout << "+" << right << setw(65) << "Enter 0 to Retrun" << setw(50) << "+" << endl;
     cout << "+==================================================================================================================+" << endl;
     read.close();
 }
@@ -450,11 +453,13 @@ void SelectPizza(){
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
     int tkiS, tkiM, tkiL, tniS, tniM, tniL, Qt = 0,chks,quan,conselect,flour;
     string Sizes;
+    char  slpaz;
     bool ckp = false, cks = false,ckt = false,ckc = false;
     
         do{
             cout << "Enter Select PizzaID : ";
-            cin >> slp;
+            cin >> slpaz;
+            slp = int(slpaz) - 48;
             for (int i = 0; i < 100; i++){
                 stringstream sw;
                 sw << Pid[i];
@@ -464,6 +469,9 @@ void SelectPizza(){
                     no = i;
                     chks = 1;
                     break;
+                }else if(slp == 0){
+                    cjp = true;
+                    ckp = true;
                 }else{
                     chks = 0;
                     ckp = false;
@@ -493,6 +501,7 @@ void SelectPizza(){
                 }
             }
             } while (ckp == false);
+            if(cjp == false){
             int chh = 0;
             do{
             if(chh == 1){
@@ -659,6 +668,7 @@ void SelectPizza(){
             cout << "+Repeat Order >> new pizza selection+" << endl;
             cout << "+-----------------------------------+" << endl;
         }
+            }
 }
 
 void vieworder(){
@@ -1222,6 +1232,9 @@ void Pizza()
     SelectPizza();
     bool ckc = false;
     do{
+        if(cjp == true){
+            ckc = true;
+        }else{
         if(Cnum == 2){
             cout << "1.ViewOrder" << endl;
             cout << "2.CancelOrder" << endl;
@@ -1288,6 +1301,7 @@ void Pizza()
                     ckc = false;
                 }
             }
+        }
         }
     } while (ckc == false);
 }
