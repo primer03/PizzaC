@@ -66,28 +66,280 @@ struct Orders
 
 void Addproduct()
 {
+    bool adcheck = false,chchar = false;
     Product pd;
+
     cout << "Enter Pizza name : ";
     cin.get();
     getline(cin, pd.name);
-    cout << "Enter quantity Pizzathick S : ";
-    cin >> pd.thickS;
-    cout << "Enter quantity Pizzathick M : ";
-    cin >> pd.thickM;
-    cout << "Enter quantity Pizzathick L : ";
-    cin >> pd.thickL;
-    cout << "Enter quantity Pizzathin S : ";
-    cin >> pd.thinS;
-    cout << "Enter quantity Pizzathin M : ";
-    cin >> pd.thinM;
-    cout << "Enter quantity Pizzathin L : ";
-    cin >> pd.thinL;
-    cout << "Enter Price PizzaSize S : ";
-    cin >> pd.priceS;
-    cout << "Enter Price PizzaSize M : ";
-    cin >> pd.priceM;
-    cout << "Enter Price PizzaSize L : ";
-    cin >> pd.priceL;
+    do
+    {
+        cout << "Enter quantity Pizzathick S : ";
+        cin >> pd.thickS;
+        int tis,ns;
+        ns = pd.thickS.size();
+        char cis[10];
+        stringstream ss;
+        ss << pd.thickS;
+        ss >> tis;
+        for (int i = 0; i < ns; i++)
+        {
+            cis[i] = pd.thickS[i];
+            if(int(cis[i]) < 48 || int(cis[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(tis >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter quantity Pizzathick M : ";
+        cin >> pd.thickM;
+        int tim,ns;
+        ns = pd.thickM.size();
+        char cim[10];
+        stringstream ss;
+        ss << pd.thickM;
+        ss >> tim;
+        for (int i = 0; i < ns; i++)
+        {
+            cim[i] = pd.thickM[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tim >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter quantity Pizzathick L : ";
+        cin >> pd.thickL;
+        int til,ns;
+        ns = pd.thickL.size();
+        char cil[10];
+        stringstream ss;
+        ss << pd.thickL;
+        ss >> til;
+        for (int i = 0; i < ns; i++)
+        {
+            cil[i] = pd.thickL[i];
+            if(int(cil[i]) < 48 || int(cil[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(til >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter quantity Pizzathin S : ";
+        cin >> pd.thinS;
+        int tnl,ns;
+        ns = pd.thinS.size();
+        char cns[10];
+        stringstream ss;
+        ss << pd.thinS;
+        ss >> tnl;
+       for (int i = 0; i < ns; i++)
+        {
+            cns[i] = pd.thickL[i];
+            if(int(cns[i]) < 48 || int(cns[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tnl >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter quantity Pizzathin M : ";
+        cin >> pd.thinM;
+        int tnm,ns;
+        ns = pd.thinM.size();
+        char cnm[10];
+        stringstream ss;
+        ss << pd.thinM;
+        ss >> tnm;
+        for (int i = 0; i < ns; i++)
+        {
+            cnm[i] = pd.thinM[i];
+            if(int(cnm[i]) < 48 || int(cnm[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tnm >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter quantity Pizzathin L : ";
+        cin >> pd.thinL;
+        int tnl,ns;
+        ns = pd.thinL.size();
+        char cnl[10];
+        stringstream ss;
+        ss << pd.thinL;
+        ss >> tnl;
+        for (int i = 0; i < ns; i++)
+        {
+            cnl[i] = pd.thinL[i];
+            if(int(cnl[i]) < 48 || int(cnl[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tnl >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter Price PizzaSize S : ";
+        cin >> pd.priceS;
+        int ps,ns;
+        ns = pd.priceS.size();
+        char cps[10];
+        stringstream ss;
+        ss << pd.priceS;
+        ss >> ps;
+        for (int i = 0; i < ns; i++)
+        {
+            cps[i] = pd.priceS[i];
+            if(int(cps[i]) < 48 || int(cps[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(ps > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter Price PizzaSize M : ";
+        cin >> pd.priceM;
+        int pm,ns;
+        ns = pd.priceM.size();
+        char cpm[10];
+        stringstream ss;
+        ss << pd.priceM;
+        ss >> pm;
+        for (int i = 0; i < ns; i++)
+        {
+            cpm[i] = pd.priceM[i];
+            if(int(cpm[i]) < 48 || int(cpm[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(pm > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
+    adcheck = false;
+    chchar = false;
+    do
+    {
+        cout << "Enter Price PizzaSize L : ";
+        cin >> pd.priceL;
+        int pl,ns;
+        ns = pd.priceL.size();
+        char cpl[10];
+        stringstream ss;
+        ss << pd.priceL;
+        ss >> pl;
+        for (int i = 0; i < ns; i++)
+        {
+            cpl[i] = pd.priceL[i];
+            if(int(cpl[i]) < 48 || int(cpl[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(pl > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+    } while (adcheck == false);
     ID++;
 
     ofstream write;
@@ -513,6 +765,7 @@ void SelectPizza(){
             cin >> flour;
             cout << "Enter (S/M/L) Size Pizza : ";
             cin >> Sizes;
+            transform(Sizes.begin(), Sizes.end(), Sizes.begin(), ::toupper);
             if(Sizes == "S" && flour == 1){
                 if(PthickS[no] == "0"){
                     cout << Pname[no] << " flour thick S Out of Stock" << endl;
@@ -1234,6 +1487,7 @@ void Pizza()
     do{
         if(cjp == true){
             ckc = true;
+            cjp = false;
         }else{
         if(Cnum == 2){
             cout << "1.ViewOrder" << endl;
