@@ -1858,6 +1858,183 @@ void ViewRePortDay(){
     }
 }
 
+void ViewRePortToDay(){
+    int Onum,Onums,inum,Sumttto = 0;
+    string cflour,dayss;
+    Product pd;
+    int SiTkS, SiTkM, SiTkL, SiTnS, SiTnM, SiTnL;
+    int OD,OM,OY,CWD,CD,CM,CY,checkvalue;
+    string day[7] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+    string month[12] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+    int OsQl[200] = {},OsPid[200][200] = {},Osflour[200][200] = {}, OsQ[200][200] = {},Osday[200] = {},Osmonth[200] = {},Osyear[200] = {},Oswday[200] = {},OsTT[200] = {};
+    string Ossize[200][200] = {},OsId[200] = {};
+    string stridss;
+    int x = 0;
+    int k = 0;
+    ifstream reads;
+    reads.open("C:/ProjectPizza/product.txt");
+    while (!reads.eof())
+    {
+        string strid;
+
+        reads >> pd.id;
+        reads.ignore();
+        getline(reads, pd.name);
+        reads >> pd.thickS;
+        reads >> pd.thickM;
+        reads >> pd.thickL;
+        reads >> pd.thinS;
+        reads >> pd.thinM;
+        reads >> pd.thinL;
+        reads >> pd.priceS;
+        reads >> pd.priceM;
+        reads >> pd.priceL;
+
+        strid = to_string(pd.id);
+
+        Pid[x] = strid;
+        Pname[x] = pd.name;
+        PthickS[x] = pd.thickS;
+        PthickM[x] = pd.thickM;
+        PthickL[x] = pd.thickL;
+        PthinS[x] = pd.thinS;
+        PthinM[x] = pd.thinM;
+        PthinL[x] = pd.thinL;
+        PpriceS[x] = pd.priceS;
+        PpriceM[x] = pd.priceM;
+        PpriceL[x] = pd.priceL;
+        x++;
+    }
+    reads.close();
+    time_t nows;
+
+    struct tm datelc;
+
+    nows = time(NULL);
+
+    datelc = *localtime(&nows);
+    OD = datelc.tm_mday;
+    OM = datelc.tm_mon + 1;
+    OY = datelc.tm_year + 1900;
+    Orders O;
+    ifstream read;
+    read.open("C:/ProjectPizza/order.txt");
+    while (!read.eof())
+    {
+        read >> O.OrderIds;
+        read >> O.OrderQl;
+        if(O.OrderQl == 1){
+            Onum = 1;
+        }else if(O.OrderQl == 2){
+            Onum = 2;
+        }else if(O.OrderQl == 3){
+            Onum = 3;
+        }
+        for (int i = 0; i < Onum; i++)
+        {
+            read >> O.OrderPid;
+            read >> O.Orderflour;
+            read >> O.OrderSize;
+            read >> O.OrderQ;
+
+            OsPid[k][i] = O.OrderPid;
+            Osflour[k][i] = O.Orderflour;
+            Ossize[k][i] = O.OrderSize;
+            OsQ[k][i] = O.OrderQ;
+        }
+        read >> O.OrderTT;
+        read >> O.Orderwday;
+        read >> O.Orderday;
+        read >> O.Ordermount;
+        read >> O.Orderyear;
+        read >> O.Ordertime;
+        int m = O.Ordermount - 1;
+        int d = O.Orderwday;
+
+        stridss = to_string(O.OrderIds);
+        
+        OsId[k] = stridss;
+        OsQl[k] = O.OrderQl;
+        Osday[k] = O.Orderday;
+        Osmonth[k] = O.Ordermount;
+        Osyear[k] = O.Orderyear;
+        Oswday[k] = O.Orderwday;
+        OsTT[k] = O.OrderTT;
+
+        
+        if(O.Orderday == OD && O.Ordermount == OM && O.Orderyear == OY){
+            Sumttto = Sumttto + O.OrderTT;
+            CWD = O.Orderwday;
+            CD = O.Orderday;
+            CM = O.Ordermount - 1;
+            CY = O.Orderyear;
+        }
+        k++;
+    }
+    read.close();
+
+    if(Sumttto == 0){
+        cout << "Not! Data" << endl;
+    }else{
+        string strnames,strpid,strflour;
+        int pris,prim,pril,PricePz = 0;
+
+        for (int y = 0; y < 200; y++)
+        {
+            if(OsId[y] != "\0"){
+                if(Osday[y] == OD && Osmonth[y] == OM && Osyear[y] == OY){
+                cout << "=================================================================" << endl;
+                cout << "Order ID " << OsId[y] << endl;
+                cout << "=================================================================" << endl;
+                cout << ":           Name            |  Flour  | Size | Quanlity | Price :" << endl;
+                cout << "-----------------------------------------------------------------" << endl;
+                    for (int j = 0; j <= OsQl[j]; j++)
+                    {
+                        for (int v = 0; v < 200; v++)
+                        {
+                        strpid = to_string(OsPid[y][j]);
+                            if(strpid == Pid[v]){
+                                strnames = Pname[v];
+
+                                stringstream rps,rpm,rpl;
+                                rps << PpriceS[v];
+                                rps >> pris;
+                                rpm << PpriceM[v];
+                                rpm >> prim;
+                                rpl << PpriceL[v];
+                                rpl >> pril;
+                                break;
+                            }
+                        }
+                        if(OsPid[y][j] != 0){
+                            if(Osflour[y][j] == 1){
+                                strflour = "Thick";
+                            }else{
+                                strflour = "Thin";
+                            }
+                            if(Ossize[y][j] == "S"){
+                                PricePz = pris;
+                            }else if(Ossize[y][j] == "M"){
+                                PricePz = prim;
+                            }else if(Ossize[y][j] == "L"){
+                                PricePz = pril;
+                            }
+                            cout << "  " << right << setw(23) << strnames << setw(4) << "|" << setw(7) 
+                            << strflour << "  |" << setw(4) << Ossize[y][j] << "  |" << setw(5) << OsQ[y][j] << setw(6) 
+                            << "  |" << setw(5) << OsQ[y][j] * PricePz << setw(2) << "  |" << endl;
+                        }
+                    }
+                    cout << "-----------------------------------------------------------------" << endl;
+                    cout << right << setw(32) << " Total " << OsTT[y] << " Baht"<< endl;
+                    cout << "-----------------------------------------------------------------" << endl <<endl;
+                }
+            }
+        }
+        cout << day[CWD] << " " << CD << " " << month[CM] << " " << CY << endl;
+        cout << "Total " << Sumttto << endl << endl;
+    }
+}
+
 void ViewRePortMonth(){
      int Onum,Onums,inum,Sumttto = 0;
     string cflour,dayss;
@@ -2146,8 +2323,9 @@ void Complet(){
         cout << "4.Update" << endl;
         cout << "5.Delete" << endl;
         cout << "6.ViewOrder" << endl;
-        cout << "7.SearchOrderReport" << endl;
-        cout << "8.Exit" << endl;
+        cout << "7.ViewOrderToday" << endl;
+        cout << "8.SearchOrderReport" << endl;
+        cout << "9.Exit" << endl;
         int option;
         char choption;
         cout << "Enter option : ";
@@ -2182,9 +2360,13 @@ void Complet(){
             check = false;
         }else if (option == 7){
             system("CLS");
-            Reportlist();
+            ViewRePortToDay();
             check = false;
         }else if (option == 8){
+            system("CLS");
+            Reportlist();
+            check = false;
+        }else if (option == 9){
             check = true;
         }else{
             system("CLS");
