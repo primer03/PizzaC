@@ -9,6 +9,7 @@
 #include <Windows.h>
 using namespace std;
 
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 int ID,Cnum = 0,OrderID,SSumtotal = 0;
 bool cjp = false;
 string Pid[100] = {};
@@ -702,7 +703,9 @@ void Checkfile()
 }
 
 void SelectPizza(){
+    SetConsoleTextAttribute(h,10);
     Productlist();
+     SetConsoleTextAttribute(h,7);
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
     int tkiS, tkiM, tkiL, tniS, tniM, tniL, Qt = 0,chks,quan,conselect,flour;
     string Sizes;
@@ -2313,7 +2316,6 @@ void Reportlist(){
 }
 
 void Complet(){
-    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
     Checkfile();
     bool check = false;
     do
