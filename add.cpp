@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <direct.h>
+#include <Windows.h>
 using namespace std;
 
 int ID,Cnum = 0,OrderID,SSumtotal = 0;
@@ -2312,12 +2313,15 @@ void Reportlist(){
 }
 
 void Complet(){
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
     Checkfile();
     bool check = false;
     do
     {
         // Productlist();
+        SetConsoleTextAttribute(h,4);
         cout << "1.Start Order" << endl;
+        SetConsoleTextAttribute(h,7);
         cout << "2.ADD" << endl;
         cout << "3.Read" << endl;
         cout << "4.Update" << endl;
