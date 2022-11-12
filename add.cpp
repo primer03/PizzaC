@@ -705,17 +705,31 @@ void Checkfile()
 void SelectPizza(){
     SetConsoleTextAttribute(h,10);
     Productlist();
-     SetConsoleTextAttribute(h,7);
+    SetConsoleTextAttribute(h,7);
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
     int tkiS, tkiM, tkiL, tniS, tniM, tniL, Qt = 0,chks,quan,conselect,flour;
-    string Sizes;
-    char  slpaz;
-    bool ckp = false, cks = false,ckt = false,ckc = false;
+    string Sizes,strslp;
+    char  slpaz[50];
+    bool ckp = false, cks = false,ckt = false,ckc = false,checkcha = false;
     
         do{
             cout << "Enter Select PizzaID : ";
-            cin >> slpaz;
-            slp = int(slpaz) - 48;
+            cin >> strslp;
+            for (int o = 0; o < strslp.size(); o++)
+            {
+               slpaz[o] = strslp[o];
+               if(int(slpaz[o]) < 48 || int(slpaz[o]) > 57){
+                checkcha = false;
+                break;
+               }else{
+                checkcha = true;
+               }
+            }
+            if(checkcha == true){
+            checkcha = false;
+            stringstream kk;
+            kk << strslp;
+            kk >> slp;
             for (int i = 0; i < 100; i++){
                 stringstream sw;
                 sw << Pid[i];
@@ -752,11 +766,15 @@ void SelectPizza(){
                 Qt = tkiS + tkiM + tkiL + tniS + tniM + tniL;
 
                 if(Qt == 0){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] <<  "Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckp = false;
                 }
             }
+            }
             } while (ckp == false);
+
             if(cjp == false){
             int chh = 0;
             do{
