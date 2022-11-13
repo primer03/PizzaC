@@ -770,6 +770,7 @@ void SelectPizza(){
                     cout << Pname[no] <<  "Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
                     ckp = false;
+                    chks = 0;
                 }
             }
             }
