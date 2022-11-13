@@ -1268,6 +1268,9 @@ void SelectPizza(){
 
         do
         {
+            string strqua;
+            char chquan[10];
+            bool checkquan = false;
             stringstream Itks,Itkm,Itkl,Itns,Itnm,Itnl;
             Itks << PthickS[no];
             Itks >> intkS;
@@ -1283,7 +1286,22 @@ void SelectPizza(){
             Itnl >> intnL;
             
             cout << "Enter Quantity : ";
-            cin >> quan;
+            cin >> strqua;
+            for (int k = 0; k < strqua.size(); k++)
+            {
+                chquan[k] = strqua[k];
+                if(int(chquan[k]) < 48 || int(chquan[k]) > 57){
+                    checkquan = false;
+                    break;
+                }else{
+                    checkquan = true;
+                }
+            }
+            if(checkquan == true){
+            checkquan = false;
+            stringstream qq;
+            qq << strqua;
+            qq >> quan;
             if(Sizes == "S" && flour == 1){
                 if(quan > 0 && quan <= intkS){
                     ckt = true;
@@ -1322,6 +1340,7 @@ void SelectPizza(){
                 }else{
                     ckt = false;
                 }
+            }
             }
         } while (ckt == false);
 
@@ -1956,7 +1975,15 @@ void Pizza()
             if(conselect == 1){
         vieworder();
             }else if(conselect == 2){
-                cout << "Enter (y/n) ";
+               cout << "Enter (";
+                SetConsoleTextAttribute(h,2);
+                cout << "y";
+                SetConsoleTextAttribute(h,7);
+                cout << "/";
+                SetConsoleTextAttribute(h,4);
+                cout << "n";
+                SetConsoleTextAttribute(h,7);
+                cout << ") ";
                 cin >> can;
                 if(can == 'y'){
                     system("CLS");
@@ -1966,7 +1993,15 @@ void Pizza()
                     ckc = false;
                 }
             }else if(conselect == 3){
-                cout << "Enter (y/n) ";
+               cout << "Enter (";
+                SetConsoleTextAttribute(h,2);
+                cout << "y";
+                SetConsoleTextAttribute(h,7);
+                cout << "/";
+                SetConsoleTextAttribute(h,4);
+                cout << "n";
+                SetConsoleTextAttribute(h,7);
+                cout << ") ";
                 cin >> con;
                 if(con == 'y'){
                     system("CLS");
@@ -1993,7 +2028,15 @@ void Pizza()
                 system("CLS");
                 vieworder();
             }else if(conselect == 3){
-                cout << "Enter (y/n) ";
+                cout << "Enter (";
+                SetConsoleTextAttribute(h,2);
+                cout << "y";
+                SetConsoleTextAttribute(h,7);
+                cout << "/";
+                SetConsoleTextAttribute(h,4);
+                cout << "n";
+                SetConsoleTextAttribute(h,7);
+                cout << ") ";
                 cin >> can;
                 if(can == 'y'){
                     system("CLS");
