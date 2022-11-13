@@ -1046,9 +1046,11 @@ void SelectPizza(){
                 chfo[n] = strfo[n];
                 if(int(chfo[n]) < 48 || int(chfo[n]) > 57){
                     checkfol = false;
+                    chh = 0;
                     break;
-                }else if(int(chfo[n]) != 49 || int(chfo[n]) > 50){
+                }else if(int(chfo[n]) < 49 || int(chfo[n]) > 50){
                     checkfol = false;
+                    chh = 0;
                     break;
                 }else{
                     checkfol = true;
