@@ -484,6 +484,7 @@ void Productlist()
     cout << "+" << right << setw(65) << "Enter 0 to Retrun" << setw(50) << "+" << endl;
     cout << "+==================================================================================================================+" << endl;
     read.close();
+     SetConsoleTextAttribute(h,7);
 }
 
 int searchData()
@@ -957,7 +958,6 @@ void Checkfile()
 
 void SelectPizza(){
     Productlist();
-    SetConsoleTextAttribute(h,7);
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
     int tkiS, tkiM, tkiL, tniS, tniM, tniL, Qt = 0,chks,quan,conselect,flour;
     string Sizes,strslp;
@@ -1034,10 +1034,31 @@ void SelectPizza(){
             if(chh == 1){
                 Productlist();
             }
+            string strfo;
+            char chfo[10];
+            bool checkfol = false;
             cout << "1.flour thick" << endl;
             cout << "2.flour thin" << endl;
             cout << "Enter flour : ";
-            cin >> flour;
+            cin >> strfo;
+            for (int n = 0; n < strfo.size(); n++)
+            {
+                chfo[n] = strfo[n];
+                if(int(chfo[n]) < 48 || int(chfo[n]) > 57){
+                    checkfol = false;
+                    break;
+                }else if(int(chfo[n]) != 49 || int(chfo[n]) > 50){
+                    checkfol = false;
+                    break;
+                }else{
+                    checkfol = true;
+                }
+            }
+            if(checkfol == true){
+            checkfol = false;
+            stringstream ff;
+            ff << strfo;
+            ff >> flour;
             cout << "Enter (S/M/L) Size Pizza : ";
             cin >> Sizes;
             transform(Sizes.begin(), Sizes.end(), Sizes.begin(), ::toupper);
@@ -1052,35 +1073,45 @@ void SelectPizza(){
                 }
             }else if(Sizes == "M" && flour == 1){
                 if(PthickM[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick M Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "L" && flour == 1){
                 if(PthickL[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick L Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "S" && flour == 2){
                 if(PthinS[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin S Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "M" && flour == 2){
                 if(PthinM[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin M Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "L" && flour == 2){
                 if(PthinL[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin L Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
@@ -1089,6 +1120,7 @@ void SelectPizza(){
                 chh = 1;
                 cks = false;
                 system("CLS");
+            }
             }
         } while (cks == false);
 
