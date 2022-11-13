@@ -426,6 +426,9 @@ void Productlist()
     read.open("C:/ProjectPizza/product.txt");
     int x = 0;
     SetConsoleTextAttribute(h,14);
+    // cout << "+=========================================================+" << endl;
+    // cout << ": ID :         Name         : Price S : Price M : Price L :" << endl;
+    // cout << "+---------------------------------------------------------+" << endl;
     cout << "+==================================================================================================================+" << endl;
     cout << ": ID :         Name         : thick S : thin S : thick M : thin M : thick L : thin L : Price S : Price M : Price L :" << endl;
     cout << "+------------------------------------------------------------------------------------------------------------------+" << endl;
@@ -474,17 +477,144 @@ void Productlist()
         LTn << pd.thinL;
         LTn >> SiTnL;
         SetConsoleTextAttribute(h,12);
+        //  cout << right << ":" << setw(3) << Pid[x] << " : " << setw(20) << Pname[x] << " : " << setw(7) <<  PpriceS[x] << " :" << setw(8) << PpriceM[x] << " :" << setw(8) << PpriceL[x] << " :" << endl;
        cout << right << ":" << setw(3) << Pid[x] << " : " << setw(20) << Pname[x] << " : " << setw(7) << PthickS[x] << " : " << setw(6) <<  PthinS[x]
          << " : " << setw(7) << PthickM[x] << " : " << setw(6) << PthinM[x] << " : " << setw(7) <<  PthickL[x] << " : " << setw(6) << PthinL[x]
          << " : " << setw(7) <<  PpriceS[x] << " :" << setw(8) << PpriceM[x] << " :" << setw(8) << PpriceL[x] << " :" << endl;
         x++;
     }
     SetConsoleTextAttribute(h,10);
+    // cout << "+=========================================================+" << endl;
+    // cout << "+" << right << setw(38) << "Enter 0 to Retrun" << setw(20) << "+" << endl;
+    // cout << "+=========================================================+" << endl;
     cout << "+==================================================================================================================+" << endl;
     cout << "+" << right << setw(65) << "Enter 0 to Retrun" << setw(50) << "+" << endl;
     cout << "+==================================================================================================================+" << endl;
     read.close();
-     SetConsoleTextAttribute(h,7);
+    SetConsoleTextAttribute(h,7);
+}
+
+void Productlistflour(int Proid)
+{
+    Product pd;
+    int SiTkS, SiTkM, SiTkL, SiTnS, SiTnM, SiTnL;
+    ifstream read;
+    read.open("C:/ProjectPizza/product.txt");
+    int x = 0;
+    SetConsoleTextAttribute(h,14);
+    cout << "+====================================================+" << endl;
+    cout << ": ID :         Name         : Thickflour : Thinflour :" << endl;
+    cout << "+----------------------------------------------------+" << endl;
+    while (!read.eof())
+    {
+        string strid;
+
+        read >> pd.id;
+        read.ignore();
+        getline(read, pd.name);
+        read >> pd.thickS;
+        read >> pd.thickM;
+        read >> pd.thickL;
+        read >> pd.thinS;
+        read >> pd.thinM;
+        read >> pd.thinL;
+        read >> pd.priceS;
+        read >> pd.priceM;
+        read >> pd.priceL;
+        if(pd.id == Proid){
+        stringstream STk,MTk,LTk,STn,MTn,LTn;
+        STk << pd.thickS;
+        STk >> SiTkS;
+        MTk << pd.thickM;
+        MTk >> SiTkM;
+        LTk << pd.thickL;
+        LTk >> SiTkL;
+        STn << pd.thinS;
+        STn >> SiTnS;
+        MTn << pd.thinM;
+        MTn >> SiTnM;
+        LTn << pd.thinL;
+        LTn >> SiTnL;
+        SetConsoleTextAttribute(h,12);
+        cout << right << ":" << setw(3) << pd.id << " : " << setw(20) << pd.name << " : " << setw(10) 
+        << SiTkS+SiTkM+SiTkL  << " :" << setw(10) << SiTnS+SiTnM+SiTnL << " :" << endl;
+        }
+    }
+    SetConsoleTextAttribute(h,10);
+    cout << "+====================================================+" << endl;
+    read.close();
+    SetConsoleTextAttribute(h,7);
+}
+
+void ProductlistSize(int Proids, int flours)
+{
+    Product pd;
+    int SiTkS, SiTkM, SiTkL, SiTnS, SiTnM, SiTnL;
+    ifstream read;
+    read.open("C:/ProjectPizza/product.txt");
+    int x = 0;
+    SetConsoleTextAttribute(h,14);
+    if(flours == 1){
+        cout << "+======================================================+" << endl;
+        cout << ": ID :         Name         : ThickS : ThickM : ThickL :" << endl;
+        cout << "+------------------------------------------------------+" << endl;
+    }else{
+        cout << "+===================================================+" << endl;
+        cout << ": ID :         Name         : ThinS : ThinM : ThinL :" << endl;
+        cout << "+---------------------------------------------------+" << endl;
+    }
+    while (!read.eof())
+    {
+        string strid;
+
+        read >> pd.id;
+        read.ignore();
+        getline(read, pd.name);
+        read >> pd.thickS;
+        read >> pd.thickM;
+        read >> pd.thickL;
+        read >> pd.thinS;
+        read >> pd.thinM;
+        read >> pd.thinL;
+        read >> pd.priceS;
+        read >> pd.priceM;
+        read >> pd.priceL;
+        if(pd.id == Proids){
+        stringstream STk,MTk,LTk,STn,MTn,LTn;
+        STk << pd.thickS;
+        STk >> SiTkS;
+        MTk << pd.thickM;
+        MTk >> SiTkM;
+        LTk << pd.thickL;
+        LTk >> SiTkL;
+        STn << pd.thinS;
+        STn >> SiTnS;
+        MTn << pd.thinM;
+        MTn >> SiTnM;
+        LTn << pd.thinL;
+        LTn >> SiTnL;
+        if(flours == 1){
+        SetConsoleTextAttribute(h,12);
+        cout << right << ":" << setw(3) << pd.id << " : " << setw(20) << pd.name << " : " << setw(6) 
+        << pd.thickS << " :" << setw(7) << pd.thickM << " :" << setw(7) << pd.thickL << " :" << endl;
+        }else{
+        SetConsoleTextAttribute(h,12);
+        cout << right << ":" << setw(3) << pd.id << " : " << setw(20) << pd.name << " : " << setw(5) 
+        << pd.thinS << " :" << setw(6) << pd.thinM << " :" << setw(6) << pd.thinL << " :" << endl;
+        }
+        }
+    }
+    if(flours == 1){
+    SetConsoleTextAttribute(h,10);
+    cout << "+======================================================+" << endl;
+    read.close();
+    SetConsoleTextAttribute(h,7);
+    }else{
+    SetConsoleTextAttribute(h,10);
+    cout << "+===================================================+" << endl;
+    read.close();
+    SetConsoleTextAttribute(h,7);
+    }
 }
 
 int searchData()
@@ -1027,13 +1157,14 @@ void SelectPizza(){
             }
             }
             } while (ckp == false);
-
+            system("CLS");
             if(cjp == false){
             int chh = 0;
             do{
-            if(chh == 1){
-                Productlist();
-            }
+            // if(chh == 1){
+            //     Productlist();
+            // }
+            Productlistflour(slp);
             string strfo;
             char chfo[10];
             bool checkfol = false;
@@ -1047,10 +1178,12 @@ void SelectPizza(){
                 if(int(chfo[n]) < 48 || int(chfo[n]) > 57){
                     checkfol = false;
                     chh = 0;
+                    system("CLS");
                     break;
                 }else if(int(chfo[n]) < 49 || int(chfo[n]) > 50){
                     checkfol = false;
                     chh = 0;
+                    system("CLS");
                     break;
                 }else{
                     checkfol = true;
@@ -1061,6 +1194,7 @@ void SelectPizza(){
             stringstream ff;
             ff << strfo;
             ff >> flour;
+            ProductlistSize(slp,flour);
             cout << "Enter (S/M/L) Size Pizza : ";
             cin >> Sizes;
             transform(Sizes.begin(), Sizes.end(), Sizes.begin(), ::toupper);
@@ -1069,6 +1203,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick S Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1078,6 +1213,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick M Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1087,6 +1223,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick L Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1096,6 +1233,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin S Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1105,6 +1243,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin M Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1114,6 +1253,7 @@ void SelectPizza(){
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin L Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
+                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
