@@ -425,10 +425,10 @@ void Productlist()
     ifstream read;
     read.open("C:/ProjectPizza/product.txt");
     int x = 0;
+    SetConsoleTextAttribute(h,14);
     cout << "+==================================================================================================================+" << endl;
     cout << ": ID :         Name         : thick S : thin S : thick M : thin M : thick L : thin L : Price S : Price M : Price L :" << endl;
     cout << "+------------------------------------------------------------------------------------------------------------------+" << endl;
-
     while (!read.eof())
     {
         string strid;
@@ -473,12 +473,13 @@ void Productlist()
         MTn >> SiTnM;
         LTn << pd.thinL;
         LTn >> SiTnL;
-
+        SetConsoleTextAttribute(h,12);
        cout << right << ":" << setw(3) << Pid[x] << " : " << setw(20) << Pname[x] << " : " << setw(7) << PthickS[x] << " : " << setw(6) <<  PthinS[x]
          << " : " << setw(7) << PthickM[x] << " : " << setw(6) << PthinM[x] << " : " << setw(7) <<  PthickL[x] << " : " << setw(6) << PthinL[x]
          << " : " << setw(7) <<  PpriceS[x] << " :" << setw(8) << PpriceM[x] << " :" << setw(8) << PpriceL[x] << " :" << endl;
         x++;
     }
+    SetConsoleTextAttribute(h,10);
     cout << "+==================================================================================================================+" << endl;
     cout << "+" << right << setw(65) << "Enter 0 to Retrun" << setw(50) << "+" << endl;
     cout << "+==================================================================================================================+" << endl;
@@ -955,7 +956,6 @@ void Checkfile()
 }
 
 void SelectPizza(){
-    SetConsoleTextAttribute(h,10);
     Productlist();
     SetConsoleTextAttribute(h,7);
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
@@ -1043,7 +1043,9 @@ void SelectPizza(){
             transform(Sizes.begin(), Sizes.end(), Sizes.begin(), ::toupper);
             if(Sizes == "S" && flour == 1){
                 if(PthickS[no] == "0"){
+                    SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick S Out of Stock" << endl;
+                    SetConsoleTextAttribute(h,7);
                     cks = false;
                 }else{
                     cks = true;
@@ -1712,9 +1714,16 @@ void Confirmorder(){
         cin >> money;
     } while (money < Totalsumss);
         balanc = money - Totalsumss;
+        SetConsoleTextAttribute(h,11);
         cout << right << ": give the change :" << setw(25)  << balanc << " Baht" << endl ;
-        cout << ":                                                :" << endl;
-        cout << ": ______________________________________________ :" << endl;
+         SetConsoleTextAttribute(h,7);
+        cout << ": ---------------------------------------------- :" << endl;
+        cout << ":";
+        SetConsoleTextAttribute(h,2);
+        cout << right << setw(31) << "Order Success" << setw(18);
+        SetConsoleTextAttribute(h,7);
+        cout << ":" << endl;
+        cout << ": ============================================== :" << endl;
         system("pause");
         
     nows = time(NULL);
@@ -1820,7 +1829,15 @@ void Pizza()
                     ckc = false;
                 }
             }else if(conselect == 4){
-                cout << "Enter (y/n) ";
+                cout << "Enter (";
+                SetConsoleTextAttribute(h,2);
+                cout << "y";
+                SetConsoleTextAttribute(h,7);
+                cout << "/";
+                SetConsoleTextAttribute(h,4);
+                cout << "n";
+                SetConsoleTextAttribute(h,7);
+                cout << ") ";
                 cin >> con;
                 if(con == 'y'){
                     system("CLS");
