@@ -530,7 +530,7 @@ void Updatedata()
 {
     bool checkid = false;
     int Pids, id;
-
+    bool adcheck = false,chchar = false;
     id = searchData();
     cout << "You want to update record (y/n) : ";
     char choice;
@@ -541,24 +541,276 @@ void Updatedata()
         cout << "Enter product name : ";
         cin.get();
         getline(cin, newData.name);
+        do
+        {
         cout << "Enter quantity Pizzathick S : ";
         cin >> newData.thickS;
+        int tis,ns;
+        ns = newData.thickS.size();
+        char cis[10];
+        stringstream ss;
+        ss << newData.thickS;
+        ss >> tis;
+        for (int i = 0; i < ns; i++)
+        {
+            cis[i] = newData.thickS[i];
+            if(int(cis[i]) < 48 || int(cis[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(tis >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter quantity Pizzathick M : ";
         cin >> newData.thickM;
+        int tim,ns;
+        ns = newData.thickM.size();
+        char cim[10];
+        stringstream ss;
+        ss << newData.thickM;
+        ss >> tim;
+        for (int i = 0; i < ns; i++)
+        {
+            cim[i] = newData.thickM[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tim >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter quantity Pizzathick L : ";
         cin >> newData.thickL;
+        int til,ns;
+        ns = newData.thickL.size();
+        char cil[10];
+        stringstream ss;
+        ss << newData.thickL;
+        ss >> til;
+        for (int i = 0; i < ns; i++)
+        {
+            cil[i] = newData.thickL[i];
+            if(int(cil[i]) < 48 || int(cil[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(til >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+    {
         cout << "Enter quantity Pizzathin S : ";
         cin >> newData.thinS;
+        int tnl,ns;
+        ns = newData.thinS.size();
+        char cns[10];
+        stringstream ss;
+        ss << newData.thinS;
+        ss >> tnl;
+        for (int i = 0; i < ns; i++)
+        {
+            cns[i] = newData.thickL[i];
+            if(int(cns[i]) < 48 || int(cns[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(tnl >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter quantity Pizzathin M : ";
         cin >> newData.thinM;
+        int tnm,ns;
+        ns = newData.thinM.size();
+        char cnm[10];
+        stringstream ss;
+        ss << newData.thinM;
+        ss >> tnm;
+        for (int i = 0; i < ns; i++)
+        {
+            cnm[i] = newData.thinM[i];
+            if(int(cnm[i]) < 48 || int(cnm[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(tnm >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter quantity Pizzathin L : ";
         cin >> newData.thinL;
+        int tnl,ns;
+        ns = newData.thinL.size();
+        char cnl[10];
+        stringstream ss;
+        ss << newData.thinL;
+        ss >> tnl;
+        for (int i = 0; i < ns; i++)
+        {
+            cnl[i] = newData.thinL[i];
+            if(int(cnl[i]) < 48 || int(cnl[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(tnl >= 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter Price PizzaSize S : ";
         cin >> newData.priceS;
+        int ps,ns;
+        ns = newData.priceS.size();
+        char cps[10];
+        stringstream ss;
+        ss << newData.priceS;
+        ss >> ps;
+        for (int i = 0; i < ns; i++)
+        {
+            cps[i] = newData.priceS[i];
+            if(int(cps[i]) < 48 || int(cps[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+       if(chchar == true){
+            if(ps > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter Price PizzaSize M : ";
         cin >> newData.priceM;
+        int pm,ns;
+        ns = newData.priceM.size();
+        char cpm[10];
+        stringstream ss;
+        ss << newData.priceM;
+        ss >> pm;
+        for (int i = 0; i < ns; i++)
+        {
+            cpm[i] = newData.priceM[i];
+            if(int(cpm[i]) < 48 || int(cpm[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(pm > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
+        do
+        {
         cout << "Enter Price PizzaSize L : ";
         cin >> newData.priceL;
+        int pl,ns;
+        ns = newData.priceL.size();
+        char cpl[10];
+        stringstream ss;
+        ss << newData.priceL;
+        ss >> pl;
+        for (int i = 0; i < ns; i++)
+        {
+            cpl[i] = newData.priceL[i];
+            if(int(cpl[i]) < 48 || int(cpl[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+            if(pl > 0){
+            adcheck = true;
+            }else{
+            adcheck = false;
+            }
+        }
+        } while (adcheck == false);
+        adcheck = false;
+        chchar = false;
         Product pd;
         ofstream tempFile;
         tempFile.open("C:/ProjectPizza/temp.txt");
