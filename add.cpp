@@ -2336,7 +2336,7 @@ void Reportlist(){
 
 void Complet(){
     Checkfile();
-    bool check = false;
+    bool check = false,checkcha = false;
     do
     {
         // Productlist();
@@ -2352,10 +2352,24 @@ void Complet(){
         cout << "8.SearchOrderReport" << endl;
         cout << "9.Exit" << endl;
         int option;
-        char choption;
+        char choption[10];
+        string stroption;
         cout << "Enter option : ";
-        cin >> choption;
-        option = int(choption) - 48;
+        cin >> stroption;
+        for (int v = 0; v < stroption.size(); v++)
+        {
+            choption[v] = stroption[v];
+            if(int(choption[v]) < 48 || int(choption[v]) > 57){
+                checkcha = false;
+                break;
+            }else{
+                checkcha = true;
+            }
+        }
+        if(checkcha == true){
+        stringstream ii;
+        ii << stroption;
+        ii >> option;
         if (option == 1)
         {
             system("CLS");
@@ -2396,6 +2410,9 @@ void Complet(){
         }else{
             system("CLS");
             check = false;
+        }
+        }else{
+            system("CLS");
         }
     } while (check == false);
 }
