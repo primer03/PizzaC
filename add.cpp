@@ -9,6 +9,7 @@
 #include <Windows.h>
 using namespace std;
 
+
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 int ID,Cnum = 0,OrderID,SSumtotal = 0;
 bool cjp = false;
