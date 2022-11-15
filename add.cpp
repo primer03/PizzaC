@@ -1094,7 +1094,6 @@ void SelectPizza(){
     string Sizes,strslp;
     char  slpaz[50];
     bool ckp = false, cks = false,ckt = false,ckc = false,checkcha = false;
-    
         do{
             cout << "Enter Select PizzaID : ";
             cin >> strslp;
@@ -1307,24 +1306,36 @@ void SelectPizza(){
                 if(quan > 0 && quan <= intkS){
                     ckt = true;
                 }else{
+                    SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size S flour thick Limited to " << intkS << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }else if(Sizes == "M" && flour == 1){
                 if(quan > 0 && quan <= intkM){
                     ckt = true;
                 }else{
+                    SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size M flour thick Limited to " << intkM << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }else if(Sizes == "L" && flour == 1){
                 if(quan > 0 && quan <= intkL){
                     ckt = true;
                 }else{
+                     SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size L flour thick Limited to " << intkL << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }else if(Sizes == "S" && flour == 2){
                 if(quan > 0 && quan <= intnS){
                     ckt = true;
                 }else{
+                    SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size S flour thin Limited to " << intnS << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }
@@ -1332,6 +1343,9 @@ void SelectPizza(){
                 if(quan > 0 && quan <= intnM){
                     ckt = true;
                 }else{
+                    SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size M flour thin Limited to " << intnM << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }
@@ -1339,6 +1353,9 @@ void SelectPizza(){
                 if(quan > 0 && quan <= intnL){
                     ckt = true;
                 }else{
+                    SetConsoleTextAttribute(h,6);
+                    cout << Pname[no] << " Size L flour thin Limited to " << intnL << endl;
+                    SetConsoleTextAttribute(h,7);
                     ckt = false;
                 }
             }
