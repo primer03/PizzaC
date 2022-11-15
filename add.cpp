@@ -1201,60 +1201,60 @@ void SelectPizza(){
             transform(Sizes.begin(), Sizes.end(), Sizes.begin(), ::toupper);
             if(Sizes == "S" && flour == 1){
                 if(PthickS[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick S Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "M" && flour == 1){
                 if(PthickM[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick M Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "L" && flour == 1){
                 if(PthickL[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thick L Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "S" && flour == 2){
                 if(PthinS[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin S Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "M" && flour == 2){
                 if(PthinM[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin M Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
                 }
             }else if(Sizes == "L" && flour == 2){
                 if(PthinL[no] == "0"){
+                    system("CLS");
                     SetConsoleTextAttribute(h,4);
                     cout << Pname[no] << " flour thin L Out of Stock" << endl;
                     SetConsoleTextAttribute(h,7);
-                    system("CLS");
                     cks = false;
                 }else{
                     cks = true;
@@ -1901,12 +1901,35 @@ void Confirmorder(){
             Totalsumss = Totalsumss +  (Oquan[k] * intssum);
         }
     }
+    bool checkmoney = false,checkm = false;
     do{
+        char chmoney[20];
+        string strmoney;
         cout << ": ============================================== :" << endl;
         cout << right << ": amount to be paid : " << setw(21) << Totalsumss << " Baht" << endl;
         cout << ": Enter Money : "<< setw(22) << " ";
-        cin >> money;
-    } while (money < Totalsumss);
+        cin >> strmoney;
+        for (int v = 0; v < strmoney.size(); v++)
+        {
+            chmoney[v] = strmoney[v];
+            if(int(chmoney[v]) < 48 || int(chmoney[v]) > 57){
+                checkm = false;
+                break;
+            }else{
+                checkm = true;
+            }
+        }
+        if(checkm == true){
+            stringstream ww;
+            ww << strmoney;
+            ww >> money;
+            if(money < Totalsumss){
+                checkmoney = false;
+            }else{
+                checkmoney = true;
+            }
+        }
+    } while (checkmoney == false);
         balanc = money - Totalsumss;
         SetConsoleTextAttribute(h,11);
         cout << right << ": give the change :" << setw(25)  << balanc << " Baht" << endl ;
