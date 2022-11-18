@@ -66,15 +66,125 @@ struct Orders
     string Ordertime;
 };
 
+void readproduct(){
+    Product pd;
+    int SiTkS, SiTkM, SiTkL, SiTnS, SiTnM, SiTnL;
+    ifstream read;
+    read.open("C:/ProjectPizza/product.txt");
+    int x = 0;
+    while (!read.eof())
+    {
+        string strid;
+
+        read >> pd.id;
+        read.ignore();
+        getline(read, pd.name);
+        read >> pd.thickS;
+        read >> pd.thickM;
+        read >> pd.thickL;
+        read >> pd.thinS;
+        read >> pd.thinM;
+        read >> pd.thinL;
+        read >> pd.priceS;
+        read >> pd.priceM;
+        read >> pd.priceL;
+
+        strid = to_string(pd.id);
+
+        Pid[x] = strid;
+        Pname[x] = pd.name;
+        PthickS[x] = pd.thickS;
+        PthickM[x] = pd.thickM;
+        PthickL[x] = pd.thickL;
+        PthinS[x] = pd.thinS;
+        PthinM[x] = pd.thinM;
+        PthinL[x] = pd.thinL;
+        PpriceS[x] = pd.priceS;
+        PpriceM[x] = pd.priceM;
+        PpriceL[x] = pd.priceL;
+
+       stringstream STk,MTk,LTk,STn,MTn,LTn;
+        STk << pd.thickS;
+        STk >> SiTkS;
+        MTk << pd.thickM;
+        MTk >> SiTkM;
+        LTk << pd.thickL;
+        LTk >> SiTkL;
+        STn << pd.thinS;
+        STn >> SiTnS;
+        MTn << pd.thinM;
+        MTn >> SiTnM;
+        LTn << pd.thinL;
+        LTn >> SiTnL;
+        x++;
+    }
+    read.close();
+}
 
 void Addproduct()
 {
-    bool adcheck = false,chchar = false;
+    readproduct();
+    bool adcheck = false,chchar = false,checkname = false;
     Product pd;
-
-    cout << "Enter Pizza name : ";
-    cin.get();
-    getline(cin, pd.name);
+    do
+    {
+        string strname,strnamesq,strnamd,tempstrname;
+        string tempname[100] = {};
+        string strchename,straddcheck[100] = {};
+        cout << "Enter Pizza name : ";
+        cin.get();
+        getline(cin, pd.name);
+        strname = pd.name;
+        char despace[50];
+        char chanames[50];
+        char strcheckn[50];
+        char straddn[50];
+        for (int i = 0; i < strname.size(); i++)
+        {
+            chanames[i] = strname[i];
+            if(int((chanames[i]) >= 65 && int(chanames[i]) <= 90) || (chanames[i]) >= 97 && int(chanames[i]) <= 122){
+                cout << int(chanames[i]) << endl;
+                despace[i] = chanames[i];
+                strnamesq += despace[i];
+            }
+        }
+        for (int j = 0; j < 100; j++)
+        {
+            if(Pid[j] != "\0"){
+                for (int l = 0; l < Pname[j].length(); l++)
+                {
+                    strchename = Pname[j];
+                    strcheckn[l] = strchename[l];
+                    if(strcheckn[l] != ' '){
+                        straddn[l] = strcheckn[l];
+                        strnamd += straddn[l];
+                    }
+                }
+                straddcheck[j] = strnamd;
+                strnamd = "";
+            }
+        }
+        for (int x = 0; x < 100; x++)
+        {
+            if(straddcheck[x] != "\0"){
+                transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
+                transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
+                if(straddcheck[x] == strnamesq){
+                    strnamesq = "";
+                    checkname = false;
+                    system("CLS");
+                    SetConsoleTextAttribute(h,4);
+                    cout << straddcheck[x] << " Repeat" << endl;
+                    SetConsoleTextAttribute(h,7);
+                    break;
+                }else{
+                    cout << straddcheck[x] << " " << strnamesq << endl;
+                    checkname = true;
+                }
+            }
+        }
+    } while (checkname == false);
+    
     do
     {
         cout << "Enter quantity Pizzathick S : ";
@@ -1087,6 +1197,8 @@ void Checkfile()
     read.close();
 }
 
+void Cancelorder();
+
 void SelectPizza(){
     Productlist();
     int slp, intid , no,intkS,intkM,intkL,intnS,intnM,intnL,intsum,intPS,intPM,intPL,Noa;
@@ -1122,6 +1234,7 @@ void SelectPizza(){
                     chks = 1;
                     break;
                 }else if(slp == 0){
+                    Cancelorder();
                     cjp = true;
                     ckp = true;
                 }else{
@@ -2347,7 +2460,9 @@ void ViewRePortDay(){
     read.close();
 
     if(Sumttto == 0){
+        SetConsoleTextAttribute(h,4);
         cout << "Not! Data" << endl;
+        SetConsoleTextAttribute(h,7);
     }else{
         string strnames,strpid,strflour;
         int pris,prim,pril,PricePz = 0;
@@ -2524,7 +2639,9 @@ void ViewRePortToDay(){
     read.close();
 
     if(Sumttto == 0){
+        SetConsoleTextAttribute(h,4);
         cout << "Not! Data" << endl;
+        SetConsoleTextAttribute(h,7);
     }else{
         string strnames,strpid,strflour;
         int pris,prim,pril,PricePz = 0;
@@ -2695,7 +2812,9 @@ void ViewRePortMonth(){
     read.close();
 
     if(Sumttto == 0){
+         SetConsoleTextAttribute(h,4);
         cout << "Not! Data" << endl;
+         SetConsoleTextAttribute(h,7);
     }else{
         string strnames,strpid,strflour;
         int pris,prim,pril,PricePz = 0;
@@ -2817,13 +2936,21 @@ void ViewRePortYear(){
     read.close();
 
     if(Sumttto == 0){
+        SetConsoleTextAttribute(h,4);
         cout << "Not! Data" << endl;
+        SetConsoleTextAttribute(h,7);
     }else{
-        for (int r = 0; r < 12; r++)
-        {
-            cout << month[r] << " Totol " << Tmonth[r] << endl;
+        cout << "+======================================+" << endl;
+        cout << ":       Month       :       Totol      :" << endl;
+        cout << "+======================================+" << endl;
+        for (int r = 0; r < 12; r++){
+            cout << right << ":" << setw(19) << month[r] << ":" << setw(18) << Tmonth[r] << ":" << endl;
         }
-        cout << "Total " << Sumttto << endl;
+        cout << "+======================================+" << endl;
+        SetConsoleTextAttribute(h,11);
+        cout << right << setw(28) << "Total " << Sumttto << " Bath" << " :" << endl;
+        SetConsoleTextAttribute(h,7);
+        cout << "+======================================+" << endl;
     }
 }
 
@@ -2867,17 +2994,25 @@ void Complet(){
     do
     {
         // Productlist();
-        SetConsoleTextAttribute(h,4);
+        // SetConsoleTextAttribute(h,4);
+        // cout << "1.Start Order" << endl;
+        // SetConsoleTextAttribute(h,7);
+        // cout << "2.ADD" << endl;
+        // cout << "3.Read" << endl;
+        // cout << "4.Update" << endl;
+        // cout << "5.Delete" << endl;
+        // cout << "6.ViewOrder" << endl;
+        // cout << "7.ViewOrderToday" << endl;
+        // cout << "8.SearchOrderReport" << endl;
+        // cout << "9.Exit" << endl;
         cout << "1.Start Order" << endl;
-        SetConsoleTextAttribute(h,7);
         cout << "2.ADD" << endl;
         cout << "3.Read" << endl;
         cout << "4.Update" << endl;
-        cout << "5.Delete" << endl;
-        cout << "6.ViewOrder" << endl;
-        cout << "7.ViewOrderToday" << endl;
-        cout << "8.SearchOrderReport" << endl;
-        cout << "9.Exit" << endl;
+        cout << "5.ViewOrder" << endl;
+        cout << "6.ViewOrderToday" << endl;
+        cout << "7.SearchOrderReport" << endl;
+        cout << "8.Exit" << endl;
         int option;
         char choption[10];
         string stroption;
@@ -2915,24 +3050,24 @@ void Complet(){
             Updatedata();
             system("CLS");
             check = false;
+        // }else if (option == 5){
+        //     system("CLS");
+        //     deleteData();
+        //     system("CLS");
+        //     check = false;
         }else if (option == 5){
-            system("CLS");
-            deleteData();
-            system("CLS");
-            check = false;
-        }else if (option == 6){
             system("CLS");
             vieworderlist();
             check = false;
-        }else if (option == 7){
+        }else if (option == 6){
             system("CLS");
             ViewRePortToDay();
             check = false;
-        }else if (option == 8){
+        }else if (option == 7){
             system("CLS");
             Reportlist();
             check = false;
-        }else if (option == 9){
+        }else if (option == 8){
             check = true;
         }else{
             system("CLS");
