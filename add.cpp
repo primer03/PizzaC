@@ -771,7 +771,7 @@ int searchData()
 
 void Updatedata()
 {
-    bool checkid = false;
+    bool checkid = false,checkname = false;
     int Pids, id;
     bool adcheck = false,chchar = false;
     id = searchData();
@@ -781,9 +781,64 @@ void Updatedata()
     if (choice == 'y')
     {
         Product newData;
-        cout << "Enter product name : ";
+        do
+    {
+        string strname,strnamesq,strnamd,tempstrname;
+        string tempname[100] = {};
+        string strchename,straddcheck[100] = {};
+        cout << "Enter Pizza name : ";
         cin.get();
         getline(cin, newData.name);
+        strname = newData.name;
+        char despace[50];
+        char chanames[50];
+        char strcheckn[50];
+        char straddn[50];
+        for (int i = 0; i < strname.size(); i++)
+        {
+            chanames[i] = strname[i];
+            if(int((chanames[i]) >= 65 && int(chanames[i]) <= 90) || (chanames[i]) >= 97 && int(chanames[i]) <= 122){
+                cout << int(chanames[i]) << endl;
+                despace[i] = chanames[i];
+                strnamesq += despace[i];
+            }
+        }
+        for (int j = 0; j < 100; j++)
+        {
+            if(Pid[j] != "\0"){
+                for (int l = 0; l < Pname[j].length(); l++)
+                {
+                    strchename = Pname[j];
+                    strcheckn[l] = strchename[l];
+                    if(strcheckn[l] != ' '){
+                        straddn[l] = strcheckn[l];
+                        strnamd += straddn[l];
+                    }
+                }
+                straddcheck[j] = strnamd;
+                strnamd = "";
+            }
+        }
+        for (int x = 0; x < 100; x++)
+        {
+            if(straddcheck[x] != "\0"){
+                transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
+                transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
+                if(straddcheck[x] == strnamesq){
+                    strnamesq = "";
+                    checkname = false;
+                    system("CLS");
+                    SetConsoleTextAttribute(h,4);
+                    cout << straddcheck[x] << " Repeat" << endl;
+                    SetConsoleTextAttribute(h,7);
+                    break;
+                }else{
+                    cout << straddcheck[x] << " " << strnamesq << endl;
+                    checkname = true;
+                }
+            }
+        }
+    } while (checkname == false);
         do
         {
         cout << "Enter quantity Pizzathick S : ";
