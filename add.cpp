@@ -143,7 +143,6 @@ void Addproduct()
         {
             chanames[i] = strname[i];
             if(int((chanames[i]) >= 65 && int(chanames[i]) <= 90) || (chanames[i]) >= 97 && int(chanames[i]) <= 122){
-                cout << int(chanames[i]) << endl;
                 despace[i] = chanames[i];
                 strnamesq += despace[i];
             }
@@ -771,6 +770,7 @@ int searchData()
 
 void Updatedata()
 {
+    readproduct();
     bool checkid = false,checkname = false;
     int Pids, id;
     bool adcheck = false,chchar = false;
@@ -798,7 +798,6 @@ void Updatedata()
         {
             chanames[i] = strname[i];
             if(int((chanames[i]) >= 65 && int(chanames[i]) <= 90) || (chanames[i]) >= 97 && int(chanames[i]) <= 122){
-                cout << int(chanames[i]) << endl;
                 despace[i] = chanames[i];
                 strnamesq += despace[i];
             }
@@ -824,17 +823,18 @@ void Updatedata()
             if(straddcheck[x] != "\0"){
                 transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
                 transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
-                if(straddcheck[x] == strnamesq){
-                    strnamesq = "";
-                    checkname = false;
-                    system("CLS");
-                    SetConsoleTextAttribute(h,4);
-                    cout << straddcheck[x] << " Repeat" << endl;
-                    SetConsoleTextAttribute(h,7);
-                    break;
-                }else{
-                    cout << straddcheck[x] << " " << strnamesq << endl;
-                    checkname = true;
+                if(straddcheck[x] != straddcheck[id]){
+                    if(straddcheck[x] == strnamesq){
+                        strnamesq = "";
+                        checkname = false;
+                        system("CLS");
+                        SetConsoleTextAttribute(h,4);
+                        cout << straddcheck[x] << " Repeat" << endl;
+                        SetConsoleTextAttribute(h,7);
+                        break;
+                    }else{
+                        checkname = true;
+                    }
                 }
             }
         }
