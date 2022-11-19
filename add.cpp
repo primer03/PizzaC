@@ -2476,12 +2476,69 @@ void ViewRePortDay(){
         x++;
     }
     reads.close();
-    cout << "Enter Day : ";
-    cin >> OD;
-    cout << "Enter Month : ";
-    cin >> OM;
-    cout << "Enter Year : ";
-    cin >> OY;
+    bool chcharOD = false;
+    do
+    {
+        string strOD;
+        cout << "Enter Day : ";
+        cin >> strOD;
+        char cim[10];
+        stringstream ss;
+        ss << strOD;
+        ss >> OD;
+        for (int i = 0; i < strOD.length(); i++)
+        {
+            cim[i] = strOD[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOD = false;
+                break;
+            }else{
+                chcharOD = true;
+            }
+        }
+    } while (chcharOD == false);
+    bool chcharOM = false;
+    do
+    {
+        string strOM;
+        cout << "Enter Month : ";
+        cin >> strOM;
+        char cim[10];
+        stringstream ss;
+        ss << strOM;
+        ss >> OM;
+        for (int i = 0; i < strOM.length(); i++)
+        {
+            cim[i] = strOM[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOM = false;
+                break;
+            }else{
+                chcharOM = true;
+            }
+        }
+    } while (chcharOM == false);
+    bool chcharOY = false;
+    do
+    {
+        string strOY;
+        cout << "Enter Year : ";
+        cin >> strOY;
+        char cim[10];
+        stringstream ss;
+        ss << strOY;
+        ss >> OY;
+        for (int i = 0; i < strOY.length(); i++)
+        {
+            cim[i] = strOY[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOY = false;
+                break;
+            }else{
+                chcharOY = true;
+            }
+        }
+    } while (chcharOY == false);
     Orders O;
     ifstream read;
     read.open("C:/ProjectPizza/order.txt");
@@ -2830,10 +2887,48 @@ void ViewRePortMonth(){
         x++;
     }
     reads.close();
-    cout << "Enter Month : ";
-    cin >> OM;
-    cout << "Enter Year : ";
-    cin >> OY;
+    bool chcharOM = false;
+    do
+    {
+        string strOM;
+        cout << "Enter Month : ";
+        cin >> strOM;
+        char cim[10];
+        stringstream ss;
+        ss << strOM;
+        ss >> OM;
+        for (int i = 0; i < strOM.length(); i++)
+        {
+            cim[i] = strOM[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOM = false;
+                break;
+            }else{
+                chcharOM = true;
+            }
+        }
+    } while (chcharOM == false);
+    bool chcharOY = false;
+    do
+    {
+        string strOY;
+        cout << "Enter Year : ";
+        cin >> strOY;
+        char cim[10];
+        stringstream ss;
+        ss << strOY;
+        ss >> OY;
+        for (int i = 0; i < strOY.length(); i++)
+        {
+            cim[i] = strOY[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOY = false;
+                break;
+            }else{
+                chcharOY = true;
+            }
+        }
+    } while (chcharOY == false);
     Orders O;
     ifstream read;
     read.open("C:/ProjectPizza/order.txt");
@@ -2966,8 +3061,27 @@ void ViewRePortYear(){
     int Nmonth[12] = {1,2,3,4,5,6,7,8,9,10,11,12};
     int Tmonth[12] = {};
     int x = 0;
-    cout << "Enter Year : ";
-    cin >> OY;
+    bool chcharOY = false;
+    do
+    {
+        string strOY;
+        cout << "Enter Year : ";
+        cin >> strOY;
+        char cim[10];
+        stringstream ss;
+        ss << strOY;
+        ss >> OY;
+        for (int i = 0; i < strOY.length(); i++)
+        {
+            cim[i] = strOY[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chcharOY = false;
+                break;
+            }else{
+                chcharOY = true;
+            }
+        }
+    } while (chcharOY == false);
     Orders O;
     ifstream read;
     read.open("C:/ProjectPizza/order.txt");
