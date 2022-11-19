@@ -179,7 +179,6 @@ void Addproduct()
                     SetConsoleTextAttribute(h,7);
                     break;
                 }else{
-                    cout << straddcheck[x] << " " << strnamesq << endl;
                     checkname = true;
                 }
             }
@@ -858,7 +857,6 @@ void Updatedata()
                         SetConsoleTextAttribute(h,7);
                         break;
                     }else{
-                        cout << straddcheck[x] << " " << strnamesq << endl;
                         checkname = true;
                     }
             }
