@@ -848,10 +848,9 @@ void Updatedata()
             transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
             if(straddcheck[x] != "\0"){
                     if(straddcheck[x] == strnamesq && strnamesq != straddcheck[ids]){
-                        cout << straddcheck[x] << " " << strnamesq << " " << straddcheck[ids] << endl;
                         strnamesq = "";
                         checkname = false;
-                        // system("CLS");
+                        system("CLS");
                         SetConsoleTextAttribute(h,4);
                         cout << straddcheck[x] << " Repeat" << endl;
                         SetConsoleTextAttribute(h,7);
