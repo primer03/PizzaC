@@ -46,6 +46,9 @@
         "xutility": "cpp",
         "iomanip": "cpp",
         "*.tcc": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "sstream": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     }
 }

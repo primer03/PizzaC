@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <direct.h>
 #include <Windows.h>
+#include <istream>
 using namespace std;
 
 
@@ -126,21 +127,21 @@ void Addproduct()
     readproduct();
     bool adcheck = false,chchar = false,checkname = false;
     Product pd;
+    cin.get();
     do
     {
         string strname,strnamesq,strnamd,tempstrname;
         string tempname[100] = {};
         string strchename,straddcheck[100] = {};
         cout << "Enter Pizza name : ";
-        cin.get();
-        getline(cin, pd.name);
-        strname = pd.name;
+        getline(cin, strname);
         char despace[50];
         char chanames[50];
         char strcheckn[50];
         char straddn[50];
         for (int i = 0; i < strname.size(); i++)
         {
+            // cout << strname << " " << pd.name << endl;
             chanames[i] = strname[i];
             if(int((chanames[i]) >= 65 && int(chanames[i]) <= 90) || (chanames[i]) >= 97 && int(chanames[i]) <= 122){
                 despace[i] = chanames[i];
@@ -169,6 +170,7 @@ void Addproduct()
                 transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
                 transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
                 if(straddcheck[x] == strnamesq){
+                    strname = "";
                     strnamesq = "";
                     checkname = false;
                     system("CLS");
@@ -730,11 +732,27 @@ void ProductlistSize(int Proids, int flours)
 int searchData()
 {
     int id;
-    bool checkid = false;
+    bool checkid = false,chchar = false;
+    string strid;
+    char cim[50];
     do
     {
         cout << "Enter Pizza id want to search : ";
-        cin >> id;
+        cin >> strid;
+        for (int i = 0; i < strid.length(); i++)
+        {
+            cim[i] = strid[i];
+            if(int(cim[i]) < 48 || int(cim[i]) > 57){
+                chchar = false;
+                break;
+            }else{
+                chchar = true;
+            }
+        }
+        if(chchar == true){
+        stringstream dd;
+        dd << strid;
+        dd >> id;
         Product pd;
         ifstream read;
         read.open("C:/ProjectPizza/product.txt");
@@ -765,6 +783,7 @@ int searchData()
                 checkid = false;
             }
         }
+        }
     } while (checkid == false);
 }
 
@@ -772,7 +791,7 @@ void Updatedata()
 {
     readproduct();
     bool checkid = false,checkname = false;
-    int Pids, id;
+    int Pids, id,checkids = 0;
     bool adcheck = false,chchar = false;
     id = searchData();
     cout << "You want to update record (y/n) : ";
@@ -780,14 +799,15 @@ void Updatedata()
     cin >> choice;
     if (choice == 'y')
     {
-        Product newData;
-        do
+    Product newData;
+    cin.get();
+    do
     {
-        string strname,strnamesq,strnamd,tempstrname;
+        string strname,strnamesq = "",strnamd,tempstrname,strid;
         string tempname[100] = {};
         string strchename,straddcheck[100] = {};
+        int ids;
         cout << "Enter Pizza name : ";
-        cin.get();
         getline(cin, newData.name);
         strname = newData.name;
         char despace[50];
@@ -805,6 +825,10 @@ void Updatedata()
         for (int j = 0; j < 100; j++)
         {
             if(Pid[j] != "\0"){
+                strid = to_string(id);
+                if(Pid[j] == strid){
+                    ids = j;
+                }
                 for (int l = 0; l < Pname[j].length(); l++)
                 {
                     strchename = Pname[j];
@@ -820,22 +844,23 @@ void Updatedata()
         }
         for (int x = 0; x < 100; x++)
         {
+            transform(straddcheck[id].begin(),straddcheck[id].end(), straddcheck[id].begin(), ::tolower);
+            transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
+            transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
             if(straddcheck[x] != "\0"){
-                transform(straddcheck[x].begin(),straddcheck[x].end(), straddcheck[x].begin(), ::tolower);
-                transform(strnamesq.begin(),strnamesq.end(), strnamesq.begin(), ::tolower);
-                if(straddcheck[x] != straddcheck[id]){
-                    if(straddcheck[x] == strnamesq){
+                    if(straddcheck[x] == strnamesq && strnamesq != straddcheck[ids]){
+                        cout << straddcheck[x] << " " << strnamesq << " " << straddcheck[ids] << endl;
                         strnamesq = "";
                         checkname = false;
-                        system("CLS");
+                        // system("CLS");
                         SetConsoleTextAttribute(h,4);
                         cout << straddcheck[x] << " Repeat" << endl;
                         SetConsoleTextAttribute(h,7);
                         break;
                     }else{
+                        cout << straddcheck[x] << " " << strnamesq << endl;
                         checkname = true;
                     }
-                }
             }
         }
     } while (checkname == false);
